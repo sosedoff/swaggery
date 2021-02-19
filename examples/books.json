@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1234,
+    "title": "Some fancy book",
+    "author": "Author",
+    "year": 2020,
+    "genres": ["Horror", "Mystery"]
+  }
+]

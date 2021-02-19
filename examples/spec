@@ -1,0 +1,32 @@
+INFO
+  version 1.0.0
+  title My Fancy API
+  description Some info goes in here
+  license apache2
+
+GET /health | Get health status
+  < 200 json health.json | Service is healthy
+  < 500 json health_error.json | Service is unhealthy
+
+GET /status | Get service status
+  < 200 json status.json
+
+GET /books | Search books
+  - Perform a books search based on various parameters
+  - Enpoint will return a paginated responses
+  > query search string | Search query
+  > query author string | Name of the author
+  > query year_min integer | Start year
+  > query year_max integer | End year
+  > query genre string=fiction,crime,detective,horror | Genre
+  > query sort=asc string=asc,desc | Results sort order
+  > query page=1 integer | Results pagination
+  > query limit=100 integer | Results limit
+  < 200 json books.json
+  < 400 json books_error.json | Invalid query
+
+GET /books/{id} | Get book details
+  > path id integer | Book ID
+  < 200 json book.json
+  < 400 json books_error.json | Query error
+  < 404 json error_not_found.json | Book does not exist
