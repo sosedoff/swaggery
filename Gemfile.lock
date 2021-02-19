@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    swaggery (0.1.0)
+      json (~> 2.5)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (2.5.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  swaggery!
+
+BUNDLED WITH
+   2.1.2
