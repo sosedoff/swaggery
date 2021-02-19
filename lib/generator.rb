@@ -1,12 +1,12 @@
+require "./types"
+require "./schema"
+
 module Swaggery
   class Generator
     include Types
     include Schema
 
     def initialize(options = {})
-      fail "Source file is not provided!" unless options[:file]
-      fail "Example dir is not provided!" unless options[:examples_path]
-
       @options = options
       @lines   = File.readlines(options[:file]).map(&:strip)
     end
@@ -146,15 +146,7 @@ module Swaggery
         }.compact
       end
 
-      result = JSON.pretty_generate(doc)
-
-      case @options[:output]
-      when String
-        STDERR.puts("writing output to #{@options[:output]}")
-        File.write(@options[:output], result)
-      else
-        STDOUT.puts(result)
-      end
+      JSON.pretty_generate(doc)
     end
 
     private
