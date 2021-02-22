@@ -8,11 +8,11 @@ module Swaggery
           @options[:file] = val
         end
 
-        opts.on("--output=name") do |val|
+        opts.on("--output=name", "Output") do |val|
           @options[:output] = val
         end
 
-        opts.on("--output-format=name") do |val|
+        opts.on("--output-format=name", "Output format") do |val|
           @options[:output_format] = val
         end
 
