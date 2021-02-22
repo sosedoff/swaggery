@@ -10,4 +10,8 @@ require "swaggery"
 options   = Swaggery::Options.new.parse
 generator = Swaggery::Generator.new(options)
 
-generator.generate
+begin
+  generator.generate
+rescue Swaggery::Error => err
+  STDERR.puts(err)
+end

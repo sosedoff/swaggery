@@ -12,6 +12,10 @@ module Swaggery
           @options[:output] = val
         end
 
+        opts.on("--output-format=name") do |val|
+          @options[:output_format] = val
+        end
+
         opts.on("--api-version=version" "Set API version") do |val|
           @options[:spec_version] = val
         end
@@ -28,6 +32,8 @@ module Swaggery
           @options[:examples_path] = val
         end
       end
+
+      @options[:output_format] ||= "json"
     end
 
     def parse

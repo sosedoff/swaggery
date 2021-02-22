@@ -2,6 +2,8 @@ module Swaggery
   class Generator
     include Types
     include Schema
+    include Parser
+    include Output
 
     def initialize(options = {})
       fail "Source file is not provided!" unless options[:file]
@@ -18,9 +20,7 @@ module Swaggery
 
       doc = {
         openapi: "3.0.0",
-        info: {
-          license: LICENSES["apache2"],
-        },
+        info: {},
         servers: [],
         paths: {}
       }
@@ -146,15 +146,7 @@ module Swaggery
         }.compact
       end
 
-      result = JSON.pretty_generate(doc)
-
-      case @options[:output]
-      when String
-        STDERR.puts("writing output to #{@options[:output]}")
-        File.write(@options[:output], result)
-      else
-        STDOUT.puts(result)
-      end
+      print_output(doc, @options[:output_format], @options[:output])
     end
 
     private
@@ -164,7 +156,7 @@ module Swaggery
     end
 
     def info_attribute(line, doc)
-      key, value = line.split(" ", 2)
+      key, value = line.split(" ", 2).map(&:strip)
 
       case key
       when "title"
@@ -172,12 +164,11 @@ module Swaggery
       when "version"
         doc[:info][:version] = value
       when "license"
-        doc[:info][:license] = LICENSES[value]
+        doc[:info][:license] = parse_license_attribute(value)
       when "description"
         doc[:info][:description] = value
       when "server"
-        name, description = value.split(" ")
-        doc[:servers] << { url: name, description: description }
+        doc[:servers] << parse_server_attribute(value)
       else
         nil
       end

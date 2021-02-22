@@ -3,6 +3,8 @@ INFO
   title My Fancy API
   description Some info goes in here
   license apache2
+  server https://staging.mydomain.com Staging
+  server https://api.mydomain.com Production
 
 GET /health | Get health status
   < 200 json health.json | Service is healthy
