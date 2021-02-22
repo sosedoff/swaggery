@@ -68,8 +68,10 @@ METHOD /path | Summary !tag
 
 The above spec converts the input into a site like:
 
-![Screen1](/images/screen1.png)
-![Screen2](/images/screen2.png)
+<div>
+  <img src="/images/screen1.png" style="border: 1px solid #eee;" width="45%" />
+  <img src="/images/screen2.png" style="border: 1px solid #eee;" width="45%" />
+</div>
 
 ## Usage
 
