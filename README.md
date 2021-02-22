@@ -66,6 +66,11 @@ METHOD /path | Summary !tag
   < CODE FORMAT FILE | Description
 ```
 
+The above spec converts the input into a site like:
+
+![Screen1](/images/screen1.png)
+![Screen2](/images/screen2.png)
+
 ## Usage
 
 ```
