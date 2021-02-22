@@ -7,17 +7,7 @@ require "rubygems"
 require "optparse"
 require "swaggery"
 
-options = {}
+options   = Swaggery::Options.new.parse
+generator = Swaggery::Generator.new(options)
 
-optparser = OptionParser.new do |opts|
-  opts.on("--file=path", "Spec file")                 { |val| options[:file] = val }
-  opts.on("--output=name")                            { |val| options[:output] = val }
-  opts.on("--api-version=version", "Set API version") { |val| options[:spec_version] = val }
-  opts.on("--api-license=name", "Set API license")    { |val| options[:spec_license] = val }
-  opts.on("--api-server=server", "Set API server")    { |val| options[:server] = val }
-  opts.on("--examples=path", "Path to examples")      { |val| options[:examples_path] = val }
-end
-
-optparser.parse!
-
-Swaggery::Generator.new(options).generate
+generator.generate
