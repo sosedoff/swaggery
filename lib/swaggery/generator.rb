@@ -10,7 +10,7 @@ module Swaggery
       fail "Example dir is not provided!" unless options[:examples_path]
 
       @options = options
-      @lines   = File.readlines(options[:file]).map(&:strip)
+      @lines   = read_file_lines(options[:file])
     end
 
     def generate
@@ -150,6 +150,17 @@ module Swaggery
     end
 
     private
+
+    def read_file_lines(path)
+      data = File.read(path).strip.gsub(/(\$([\w\d\-\_]+))/) do |m|
+        if val = ENV[$2]
+          m = val
+        else
+          fail "Cant load referenced env var: #{$2}"
+        end
+      end
+      data.split("\n").map(&:strip)
+    end
 
     def request_definition?(line)
       %w(GET POST PUT PATCH DELETE).include?(line.split(" ").first)
