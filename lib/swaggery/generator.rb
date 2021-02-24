@@ -6,8 +6,8 @@ module Swaggery
     include Output
 
     def initialize(options = {})
-      fail "Source file is not provided!" unless options[:file]
-      fail "Example dir is not provided!" unless options[:examples_path]
+      fail "Source file is not provided!"   unless options[:file]
+      fail "Examples path is not provided!" unless options[:examples_path]
 
       @options = options
       @lines   = read_file_lines(options[:file])

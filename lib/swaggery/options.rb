@@ -34,6 +34,7 @@ module Swaggery
       end
 
       @options[:output_format] ||= "json"
+      @options[:examples_path] ||= "./examples"
     end
 
     def parse
