@@ -38,8 +38,28 @@ module Swaggery
       when Array
         array_schema(data)
       else
-        fail "invalid data for schema"
+        fail "invalid data for schema in #{path}"
       end
+    end
+
+    def example_from_file(path)
+      data = JSON.load(File.read(path))
+
+      case data
+      when Hash
+        data
+      when Array
+        data[0]
+      else
+        fail "invalid data for example in #{path}"
+      end
+    end
+
+    def response_content_from_file(path)
+      {
+        schema:  schema_from_file(path),
+        example: example_from_file(path)
+      }
     end
   end
 end

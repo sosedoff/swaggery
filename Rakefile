@@ -8,3 +8,7 @@ RSpec::Core::RakeTask.new(:test) do |t|
 end
 
 task :default => :test
+
+task :demo do
+  puts `./bin/swaggery --file=./examples/spec --output=./tmp/spec.json`
+end
