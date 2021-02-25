@@ -16,7 +16,7 @@ module Swaggery
     def generate
       entry = nil
       entries = []
-      section = nil
+      section = SECTION_INFO
 
       doc = {
         openapi: "3.0.0",
@@ -29,20 +29,12 @@ module Swaggery
         # Skip empty lines or comments
         next if line.empty? || line.start_with?("#")
 
-        # Determine the first section
-        if !section
-          if line.split(" ").first == "INFO"
-            section = "info"
-            next
-          end
-
-          fail "invalid section: #{line}"
-        end
-
         # Handle section attributes
-        if section == "info"
+        if section == SECTION_INFO
           next if info_attribute(line, doc)
-          section = "paths"
+
+          # Switch to paths processing
+          section = SECTION_PATHS
         end
 
         if request_definition?(line)

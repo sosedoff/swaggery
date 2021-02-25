@@ -15,12 +15,11 @@ This experimental project is an attempt to minimize effort needed to put togethe
 Let's consider an example API docs spec:
 
 ```
-INFO
-  version 1.0.0
-  title My Fancy API
-  license apache2
-  server https://staging.mydomain.com Staging
-  server https://api.mydomain.com Production
+version 1.0.0
+title My Fancy API
+license apache2
+server https://staging.mydomain.com Staging
+server https://api.mydomain.com Production
 
 GET /health | Get health status
   < 200 json health.json | Service is healthy
@@ -52,16 +51,16 @@ METHOD /path | Summary !tag
   # A comment
   - Description line 1
   - Description line 2
-  
+
   # Query inputs
   > query param type | Description (optional)
   > query *param type | Required parameter
   > query param=defvalue type | Param with default value
   > query param string=a,b,c,d | Param with available options
-  
+
   # Path inputs, for paths like /books/{bookID}
   > path bookID string | Book ID
-  
+
   # Responses
   < CODE FORMAT FILE | Description
 ```

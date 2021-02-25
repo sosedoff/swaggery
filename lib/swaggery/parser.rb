@@ -2,6 +2,9 @@ module Swaggery
   module Parser
     include Types
 
+    SECTION_INFO  = "info"
+    SECTION_PATHS = "paths"
+
     def parse_license_attribute(line)
       return LICENSES[line] if LICENSES.key?(line)
 
