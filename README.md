@@ -72,9 +72,27 @@ The above spec converts the input into a site like:
   <img src="/images/screen2.png" style="border: 1px solid #eee;" width="45%" />
 </div>
 
+## Installation
+
+**From RubyGems**
+
+```bash
+gem install swaggery
+```
+
+**From Source**
+
+Assumes you have Ruby installed on your dev machine.
+
+```bash
+git clone https://github.com/sosedoff/swaggery.git
+cd swaggery
+rake install
+```
+
 ## Usage
 
-```
+```bash
 Usage: swaggery [options]
   --file=path                  Spec file
   --output=name                Output
@@ -84,3 +102,16 @@ Usage: swaggery [options]
   --api-server=server          Set API server
   --examples=path              Path to examples
 ```
+
+You can generate an example documentation with:
+
+```bash
+# Generate the OpenAPI spec file
+swaggery --file=./examples/spec > docs.json
+
+# Preview the documentation with OpenAPI CLI
+openapi preview-docs spec.json
+```
+
+See the [openapi-cli](https://github.com/Redocly/openapi-cli) documentation for 
+installation instructions and usage.
