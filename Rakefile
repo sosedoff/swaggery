@@ -9,6 +9,16 @@ end
 
 task :default => :test
 
-task :demo do
-  puts `./bin/swaggery --file=./examples/spec --output=./tmp/spec.json`
+task :generate do
+  [
+    "./bin/swaggery --file=./examples/spec --output=./tmp/spec.json",
+    "openapi lint --format=stylish ./tmp/spec.json",
+    "openapi stats ./tmp/spec.json",
+  ].each do |cmd|
+    puts `#{cmd}`
+  end
+end
+
+task preview: :generate do
+  exec "openapi preview-docs ./tmp/spec.json"
 end
