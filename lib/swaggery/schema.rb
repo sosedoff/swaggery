@@ -3,9 +3,11 @@ require "json"
 module Swaggery
   module Schema
     def enumify(options, type)
-      (options || []).map do |value|
+      result = (options || []).map do |value|
         convert_type(value.strip, type)
       end
+
+      result.any? ? result : nil
     end
 
     def object_schema(obj)
