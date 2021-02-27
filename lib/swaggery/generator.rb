@@ -91,6 +91,11 @@ module Swaggery
             default = convert_type(default, type)
           end
 
+          # Path parameters are required
+          if loc == "path" && !required
+            required = true
+          end
+
           entry[:parameters] << {
             in:          loc,
             name:        name.sub(/^\*/, ""),
