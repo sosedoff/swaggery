@@ -31,3 +31,10 @@ GET /books/{id} | Get book details
   < 200 json book.json
   < 400 json books_error.json | Query error
   < 404 json error_not_found.json | Book does not exist
+
+POST /books/{id}/reviews | Submit a book review
+  > path id integer | Book ID
+  > body json review_submit.json | Review details
+  < 200 json review_submitted.json | Review submitted
+  < 404 json error_not_found.json | Book not found
+  < 422 json review_error.json | Validation failed

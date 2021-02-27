@@ -96,6 +96,16 @@ module Swaggery
             required = true
           end
 
+          if loc == "body"
+            entry[:body] = {
+              description: rest.join(" ").sub(/^\|/, "").strip,
+              content: {
+                CONTENT_TYPES[name] => response_content_from_file(File.join(@options[:examples_path], type))
+              }
+            }
+            next
+          end
+
           entry[:parameters] << {
             in:          loc,
             name:        name.sub(/^\*/, ""),
@@ -143,6 +153,7 @@ module Swaggery
           summary:     entry[:summary],
           description: entry[:description],
           parameters:  entry[:parameters],
+          requestBody: entry[:body],
           responses:   entry[:responses],
           tags:        entry[:tags],
           operationId: entry[:operation_id]
