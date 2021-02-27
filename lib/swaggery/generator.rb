@@ -65,6 +65,11 @@ module Swaggery
             responses:  {},
             tags:       tags
           }
+
+          entry[:operation_id] = "#{method}-#{path}".
+            downcase.
+            gsub(/[\{\}]/, "").
+            gsub(/\//, "-")
         end
 
         # Parse comment
@@ -134,7 +139,8 @@ module Swaggery
           description: entry[:description],
           parameters:  entry[:parameters],
           responses:   entry[:responses],
-          tags:        entry[:tags]
+          tags:        entry[:tags],
+          operationId: entry[:operation_id]
         }.compact
       end
 
