@@ -128,10 +128,12 @@ module Swaggery
             description = status_code(status)
           end
 
-          example_file = File.join(@options[:examples_path], file)
-
           content = {}
-          content[CONTENT_TYPES[content_type]] = response_content_from_file(example_file)
+
+          if file != "-"
+            example_file = File.join(@options[:examples_path], file)
+            content[CONTENT_TYPES[content_type]] = response_content_from_file(example_file)
+          end
 
           entry[:responses] ||= {}
           entry[:responses][status] = {

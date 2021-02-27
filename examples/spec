@@ -38,3 +38,9 @@ POST /books/{id}/reviews | Submit a book review
   < 200 json review_submitted.json | Review submitted
   < 404 json error_not_found.json | Book not found
   < 422 json review_error.json | Validation failed
+
+DELETE /books/{bookID}/reviews/{reviewID} | Delete book review
+  > path bookID integer | Book ID
+  > path reviewID integer | Review ID
+  < 201 json - | Review deleted
+  < 404 json error_not_found.json | Book not found
