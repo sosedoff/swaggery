@@ -22,6 +22,7 @@ module Swaggery
       Integer    => "integer",
       TrueClass  => "boolean",
       FalseClass => "boolean",
+      Float      => "number",
       Array      => "array",
       Hash       => "object"
     }
